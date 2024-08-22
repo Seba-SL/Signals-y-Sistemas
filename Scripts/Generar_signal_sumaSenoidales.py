@@ -1,21 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
 # Parámetros de la señal
 #frecuency_senal = 1/8     # frecuency en Hz
 #amplitude_senal = 1         # amplitude de la señal
-duration = 10               # Duración en segundos
+
 sampling = 1000            # Número de muestras por segundo
 pi = 3.141592 # pi aproximacion
-
+duration = 10               # Duración en segundos
 # Crear un vector de time
-time = np.linspace(-1, duration, int(sampling * duration), endpoint=False)
+time = np.linspace(0, duration, int(sampling * duration), endpoint=False)
+
+
 
 # Funcion que generara Señal exponencial compleja
 def signal_complex_generator(phase,amplitude,frecuency):
-    return amplitude*np.exp(1j*(2*pi*frecuency*time) + phase)
+    return amplitude*np.sin((2*np.pi*frecuency*time ) + phase )
     
-
 print('Ingrese el nombre se la señal a graficar')
 
 nombre_signal = input()
@@ -28,6 +31,8 @@ n = input()
 # Inicializa la lista con un tamaño adecuado
 signal_list = [None]*int(n)  # Asegúrate de que la lista tenga al menos n + 1 elementosPru
 
+# Definir una lista de colores
+colors = plt.cm.viridis(np.linspace(0, 1, int(n)))  # Usar el mapa de colores 'viridis'
 
 
 for i in range(int(n)):
@@ -40,6 +45,7 @@ for i in range(int(n)):
 
     frecuency = input()
 
+
     print('Ingrese fase de señal ' +  str(i+1) )
 
     phase = input()
@@ -49,17 +55,32 @@ for i in range(int(n)):
 
 
 
+
 # Crear la gráfica
 plt.figure(figsize=(10, 6))
 
+
+
 # Graficar la señal senoidal
-plt.subplot(2, 1, 1)
-plt.plot(time, sum(signal_list) , label='Señal: '+nombre_signal , color='blue')
-plt.title('Señales')
+plt.plot(2, 1, 1)
+plt.plot(time, sum(signal_list) , label='Señal: '+nombre_signal , color='green' ,linewidth=3 )
+plt.title('Señal')
 plt.xlabel('time (s)')
 plt.ylabel('amplitude')
 plt.grid(True)
 plt.legend()
+
+
+for i in range(int(n)):
+  
+    # Graficar la señal senoidal
+    plt.plot(2, 1, 1)
+    plt.plot(time, signal_list[i] , label='señal'+str(i) , color=colors[i],linestyle=':' ,linewidth=1 )
+    plt.title('Señales')
+    plt.xlabel('time (s)')
+    plt.ylabel('amplitude')
+    plt.grid(True)
+    plt.legend()
 
 
 # Mostrar las gráficas
