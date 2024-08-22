@@ -16,7 +16,8 @@ Bibliotecas:
 
 Scrips:  
   - Generador de señales periodicas:
-      <img src="https://github.com/user-attachments/assets/1f0e2eb8-3c14-4821-828b-f536b5a42763" alt="imagen" width="100"/>
+    
+      <img src="https://github.com/user-attachments/assets/1f0e2eb8-3c14-4821-828b-f536b5a42763" alt="imagen" width="800"/>
 
    
                                                     
