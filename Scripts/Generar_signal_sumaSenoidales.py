@@ -57,13 +57,13 @@ for i in range(int(n)):
 
 
 # Crear la gráfica
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 12))
 
 
 
 # Graficar la señal senoidal
 plt.plot(2, 1, 1)
-plt.plot(time, sum(signal_list) , label='Señal: '+nombre_signal , color='green' ,linewidth=3 )
+plt.plot(time, sum(signal_list)/(pi*time) , label='Señal: '+nombre_signal , color='green' ,linewidth=3 )
 plt.title('Señal')
 plt.xlabel('time (s)')
 plt.ylabel('amplitude')
