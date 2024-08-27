@@ -2,25 +2,39 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# Definir el rango de n y k
-n = np.arange(1, 100)
+#a_ cos[(2π/12)*n]
+
+duration = 20
+sampling = 1000
+
+time = np.linspace(-10,duration , int(sampling*duration) , endpoint = False)
+
+plt.figure(figsize = (12,12) )
+
+def heaviside(x):
+    return np.where(x >= 0, 1, 0)
 
 
-def escalon_unitario(n):
-    return np.where(n >= 0, 1, 0)
+def signal(time):
+    return 1/pow(np.e,5*time) *heaviside(time + 2 )
+
+signal_par = (signal(time) + signal(-time))/2
 
 
-# Sumar las señales a lo largo del eje de k
-signal =  (1/pow(2,n)) * escalon_unitario(n)
+signal_impar = (signal(time)  -signal(-time))/2
 
 
-
-# Graficar la señal
-plt.figure(figsize=(10, 6))  # Ajustar el tamaño de la figura para mejor visualización
-plt.stem(n, signal, label='item d) : 2^-n * u(n)', basefmt=" ", use_line_collection=True)
-plt.xlabel('n')
-plt.ylabel('x[n]')
-plt.title('Ej 11 item d)')
+plt.plot(2,1,1)
+plt.plot(time , signal(time),label = 'd)' , color =  'blue',linewidth = 3)
+plt.plot(time , signal_par  ,label = 'par parte' , color =  'red',linewidth = 3)
+plt.plot(time , signal_impar  ,label = 'impar parte' , color =  'orange',linewidth = 3)
+plt.title('Ejercicio 9 , item d)')
+plt.xlabel('time [s]')
+plt.ylabel('amplitude')
 plt.grid(True)
 plt.legend()
+
+plt.tight_layout()
 plt.show()
+
+
