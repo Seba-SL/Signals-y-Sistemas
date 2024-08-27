@@ -1,57 +1,34 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-#
-duration = 20
-sampling = 1000
-
-time = np.linspace(-10,duration , int(sampling*duration) , endpoint = False)
-
-n = np.array([-6,-5,-4,-3,-2,-1,0,1, 2, 3, 4, 5])  # Puedes ajustar el rango según sea necesario
-
-
-plt.figure(figsize = (12,12) )
-
-vector_x = [0,0,0,0,1,2,3,2,2,1,0,0]
-
-
-def signal_x(x):
-    return x;
-
-def heaviside(x):
-    return np.where(x >= 0, 1, 0)
-
-def delta_approx(n, index):
-    """
-    Genera un impulso unitario (delta de Dirac) en la posición dada.
+def signal_x(n):
+    # Convertir n a un array si no lo es
+    n = np.asarray(n)
     
-    :param n: Array de índices donde evaluar la señal.
-    :param index: Posición del impulso unitario (donde será 1).
-    :return: Array de la señal delta de Dirac.
-    """
-    return np.where(n == index, 1, 0)
+    # Inicializar un array de ceros
+    result = np.zeros_like(n, dtype=float)
+    
+    # Aplicar las condiciones de la función
+    result[np.logical_or(n == -2, n == 3)] = 1
+    result[n == 0] = 3
+    result[np.logical_or(np.logical_or(n == -1, n == 1), n == 2)] = 2
+    
+    return result
 
 def signal_c(n):
-    if(n > 0):
-        return signal_x(n)/2 + (np.power(-1, n)*signal_x(n))/2
-    else : return 0
+    n = np.asarray(n, dtype=float)  # Convertir n a tipo float
+    return signal_x(n)/2 + (np.power(-1, n) * signal_x(n))/2
 
-plt.plot(2,1,1)
 
-plt.stem(n , vector_x,label = 'x(n)' ,use_line_collection=True)
-#plt.stem(n , vector_x*heaviside(2-n),label = 'a)' ,use_line_collection=True ,  linefmt='-', markerfmt='ro', basefmt='r-')
-#plt.stem(n , signal_x(n-1)*delta_approx(n - 3, 0),label = 'b)' ,use_line_collection=True ,  linefmt='-', markerfmt='ro', basefmt='r-')
-plt.stem(n , signal_c(n) ,label = 'c)' ,use_line_collection=True ,  linefmt='-', markerfmt='ro', basefmt='r-')
-#plt.stem(n , vector_x(3*n+1),label = 'd)' ,use_line_collection=True ,  linefmt='-', markerfmt='ro', basefmt='r-')
+# Crear un rango de valores para n
+n = np.arange(-5, 6)  # Incluye 5 en el rango
 
-plt.title('Ejercicio 14')
-plt.xlabel('time [s]')
-plt.ylabel('amplitude')
-plt.grid(True)
+vector_x = signal_x(n)
+vector_c = signal_c(n)
+
+plt.figure()
+#plt.stem(n, vector_x, label='x(n)', linefmt='-', markerfmt='ro', basefmt='r-', use_line_collection=True)
+#plt.stem(n, vector_c, label='c)', linefmt='--', markerfmt='g', basefmt='g-', use_line_collection=True)
+plt.stem(n, signal_x(3*n + 1 ), label='d)', linefmt='-', markerfmt='g', basefmt='g-', use_line_collection=True)
 plt.legend()
-
-plt.tight_layout()
 plt.show()
-
-
