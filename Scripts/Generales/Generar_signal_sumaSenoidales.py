@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 #frecuency_senal = 1/8     # frecuency en Hz
 #amplitude_senal = 1         # amplitude de la señal
 
-sampling = 1000            # Número de muestras por segundo
+sampling = 10            # Número de muestras por segundo
 pi = 3.141592 # pi aproximacion
-duration = 10               # Duración en segundos
+duration = 100      # Duración en segundos
 # Crear un vector de time
 time = np.linspace(0, duration, int(sampling * duration), endpoint=False)
 
@@ -60,10 +60,13 @@ for i in range(int(n)):
 plt.figure(figsize=(12, 12))
 
 
+def domiciliaria():
+    return 311*np.sin(time*2*np.pi*50)
+
 
 # Graficar la señal senoidal
 plt.plot(2, 1, 1)
-plt.plot(time, sum(signal_list)/(pi*time) , label='Señal: '+nombre_signal , color='green' ,linewidth=3 )
+plt.plot(time, domiciliaria() , label='Señal: '+nombre_signal , color='green' ,linewidth=3 )
 plt.title('Señal')
 plt.xlabel('time (s)')
 plt.ylabel('amplitude')

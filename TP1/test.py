@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Ruta del archivo .wav
-filename = 'Zombie.wav'
+filename = 'InASentimentalMood.wav'
 
 # Abrir el archivo .wav
 with wave.open(filename, 'r') as wf:
@@ -28,8 +28,8 @@ time = np.linspace(0, n_frames / framerate, num=n_frames)
 
 # Graficar la forma de onda
 plt.figure(figsize=(12, 6))
-plt.plot(time, audio_data, color='green')
-plt.title('Forma de onda del archivo de audio: Zombie.wav')
+plt.plot(time, audio_data, color='blue')
+plt.title('Forma de onda del archivo de audio')
 plt.xlabel('Tiempo (s)')
 plt.ylabel('Amplitud')
 plt.grid(True)
