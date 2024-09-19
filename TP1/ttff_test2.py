@@ -4,7 +4,7 @@ import wave
 
 
 #Obtener señal
-wav = wave.open("InASentimentalMood.wav","r")
+wav = wave.open("do.wav","r")
 #señal
 raw_señal = wav.readframes(-1)
 raw_señal = np.frombuffer(raw_señal , "int16")

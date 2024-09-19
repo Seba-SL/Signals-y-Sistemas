@@ -10,7 +10,7 @@ wav = wave.open("InASentimentalMood.wav","r")
 #Obtener Do
 nota_do = wave.open("do.wav","r")
 #Obtener Re
-nota_re = wave.open("RE.wav","r")
+nota_re = wave.open("re.wav","r")
 #obtener Mi
 nota_mi = wave.open("mi.wav","r")
 
