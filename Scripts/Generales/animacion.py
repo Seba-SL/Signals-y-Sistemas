@@ -1,24 +1,34 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Definir el rango de omega
-omega = np.linspace(-10, 10, 1000)
 
-# Inicializar X(jω)
-X = np.zeros_like(omega, dtype=complex)
+# Definir el rango de frecuencias
+frequencies = np.linspace(-10, 10, 1000)
 
-# Evaluar la suma para k = -10 a 10 (puedes ajustar este rango)
-for k in range(-10, 11):
-    if k != 0:  # Evitar k = 0
-        delta_w = k * (2 * np.pi / 6)
-        X += (2 * np.sin(3 * delta_w) / k) * np.exp(-1j * omega * (3/2)) * (omega == delta_w)
 
-# Graficar el módulo de X(jω)
-plt.figure(figsize=(10, 5))
-plt.plot(omega, np.abs(X), label='|X(jω)|')
-plt.title('Espectro de frecuencia')
-plt.xlabel('Frecuencia (ω)')
-plt.ylabel('|X(jω)|')
-plt.grid()
+
+# Definir la función compleja
+def f(f):
+    return  np.e**(1j*frequencies)/(-1-1j*frequencies)  -  np.e**(-1 - 1j*frequencies)/(-1-1j*frequencies)
+
+values = f(frequencies)
+
+
+#  -  exp(jw)    +   exp(-1-jw)       
+#    (-1-jw)              (-1-jw)
+
+# Graficar la parte real y la parte imaginaria
+plt.figure(figsize=(50, 10))
+#plt.plot(frequencies, values.real, label='Parte Real', color='blue')
+#plt.plot(frequencies, values.imag, label='Parte Imaginaria', color='red')
+plt.plot(frequencies, np.abs(values), label='Magnitud', color='green')
+plt.title('|X(jw)|')
+plt.xlabel('Frecuencia (f)')
+plt.ylabel('Valor de la función')
+plt.axhline(0, color='black', linewidth=0.5, ls='--')
+plt.axvline(0, color='black', linewidth=0.5, ls='--')
 plt.legend()
+plt.grid()
+plt.xlim(-4, 4)
+plt.ylim(-0.8, 0.8)
 plt.show()
