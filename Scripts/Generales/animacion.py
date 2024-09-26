@@ -1,25 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Definir el rango de tiempo
-t = np.linspace(-2, 2, 1000)
+# Definir el rango de omega
+omega = np.linspace(-10, 10, 1000)
 
-# Definir la señal x(t)
-x_t = -(1j / np.sqrt(2)) * np.exp(-np.pi * t*1j) + (1j / np.sqrt(2)) * np.exp(np.pi * t*1j)
+# Inicializar X(jω)
+X = np.zeros_like(omega, dtype=complex)
 
-# Obtener la parte real e imaginaria para graficar
-real_part = np.real(x_t)
-imag_part = np.imag(x_t)
+# Evaluar la suma para k = -10 a 10 (puedes ajustar este rango)
+for k in range(-10, 11):
+    if k != 0:  # Evitar k = 0
+        delta_w = k * (2 * np.pi / 6)
+        X += (2 * np.sin(3 * delta_w) / k) * np.exp(-1j * omega * (3/2)) * (omega == delta_w)
 
-# Graficar
-plt.figure(figsize=(12, 6))
-plt.plot(t, real_part, label='Parte Real', color='blue')
-plt.plot(t, imag_part, label='Parte Imaginaria', color='red')
-plt.title('Señal x2(t)')
-plt.xlabel('Tiempo (t)')
-plt.ylabel('x(t)')
-plt.axhline(0, color='black', linewidth=0.5, ls='--')
-plt.axvline(0, color='black', linewidth=0.5, ls='--')
-plt.legend()
+# Graficar el módulo de X(jω)
+plt.figure(figsize=(10, 5))
+plt.plot(omega, np.abs(X), label='|X(jω)|')
+plt.title('Espectro de frecuencia')
+plt.xlabel('Frecuencia (ω)')
+plt.ylabel('|X(jω)|')
 plt.grid()
+plt.legend()
 plt.show()
