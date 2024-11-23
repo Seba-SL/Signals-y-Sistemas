@@ -1,0 +1,24 @@
+7. Identifique utilizando FFT y espectrogramas las notas musicales presentes en el
+archivo “notas_musicales.wav”. Una vez localizadas, trate de aislarlas en señales
+separadas utilizando sus FFTs. Muestre en gráficos temporales y espectrales los
+resultados obtenidos.
+
+8. Para cada nota obtenida en el ejercicio anterior, aumente un semitono la
+frecuencia utilizando la función pitch_shift de la librería librosa de Python.
+Muestre en gráficos temporales y espectrales los resultados obtenidos.
+
+9. Utilizando decimación e interpolación,
+a) Aumente la velocidad de la señal “InASentimentalMood.wav” en un
+factor de 1.25.
+b) Disminuya la velocidad de la señal “InASentimentalMood.wav” en un
+factor de 0.75.
+c) Analice que sucede con las notas presentes en el audio. Muestre en
+gráficos temporales y espectrales los resultados obtenidos.
+
+10. Repita el ejercicio anterior pero esta vez utilizando la función phase_vocoder de
+la librería librosa de Python. Compare los resultados utilizando gráficos
+temporales y espectrales. Investigue como se implementa dicho algoritmo.
+
+11. Separe componentes armónicos y percusivos en la señal
+“InASentimentalMood.wav” utilizando la función hpss de la librería librosa de
+Python.
